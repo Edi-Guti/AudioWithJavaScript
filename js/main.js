@@ -84,7 +84,19 @@
             }
 
             // create and play explosion sound
+            // create
+            let boomSound = document.createElement('audio'); //<audio>
+
+            boomSound.src = "audio/boomsound.mp3";
+            //<audio src="audio/laser.mp3">
+            boomSound.load();
+            boomSound.addEventListener('ended', function() {
+              document.body.appendChild(boomSound);
+            });
+
+            document.body.appendChild(boomSound);
             
+            boomSound.play();
           }
         });
 
@@ -123,7 +135,7 @@
       window.requestAnimationFrame(draw);
   }
 
-  
+
   function createBullet() {
     // create / draw a bullet and push it into the bullet array
     let newBullet = {
@@ -137,7 +149,16 @@
     bullets.push(newBullet);
 
     // create and play cheesy laser sound
-    
+    let cheesyLaser = document.createElement('audio');
+    cheesyLaser.src = "audio/laser.mp3";
+    cheesyLaser.load();
+
+    cheesyLaser.addEventListener('ended', function() {
+      document.body.removeChild(cheesyLaser);
+    });
+
+    document.body.appendChild(cheesyLaser);
+    cheesyLaser.play();
   }
 
   function movePlayer(e) {
